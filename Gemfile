@@ -10,6 +10,7 @@ gem 'gravatar_image_tag', '0.1.0'
 gem 'will_paginate', '3.0.pre2'
 gem 'taps', '0.3.14'
 gem 'authlogic', '2.1.6'
+gem 'haml'
 
 group :development do
   gem 'rspec-rails', '2.0.1'
