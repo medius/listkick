@@ -11,7 +11,7 @@ Listkick::Application.routes.draw do
   match '/edit',    :to => 'users#edit'
   match '/profile', :to => 'users#show'
   
-  resource :user_session
+  resource :user_session, :only => [:new, :create, :destroy]
   resources :users
   root :to => 'pages#home'
   
