@@ -1,18 +1,28 @@
 Listkick::Application.routes.draw do
 
- # get "users/new"
+  # Paths without any dedicated pages
+  resource :user_session, :only => :create
+  resources :users,       :only => [:create, :update]
+  resources :lists
   
-  match '/signup',  :to => 'users#new'
-  match '/contact', :to => 'pages#contact'
+  # General pages
   match '/about',   :to => 'pages#about'
-  match '/help',    :to => 'pages#help'
-  match '/login',   :to => 'user_sessions#new'
-  match '/logout',  :to => 'user_sessions#destroy'
-  match '/edit',    :to => 'users#edit'
-  match '/profile', :to => 'users#show'
+  match '/tour',    :to => 'pages#tour'
+  match '/blog',    :to => 'pages#blog'
+  match '/faq',     :to => 'pages#faq'
+  match '/contact', :to => 'pages#contact'
+  match '/plans',   :to => 'pages#plans'
   
-  resource :user_session, :only => [:new, :create, :destroy]
-  resources :users
+  # User access pages
+  match '/signup',   :to => 'users#new'
+  match '/login',    :to => 'user_sessions#new'
+  match '/logout',   :to => 'user_sessions#destroy'
+ # match '/edit',     :to => 'users#edit'
+  match '/settings', :to => 'users#show'
+
+  # List access pages
+  match '/lists',   :to => 'lists#index'
+  
   root :to => 'pages#home'
   
   # The priority is based upon order of creation:

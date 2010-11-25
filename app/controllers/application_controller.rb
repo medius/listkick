@@ -16,10 +16,12 @@ class ApplicationController < ActionController::Base
   end
   
   def require_user
-    unless current_user
+    if current_user
+      set_current_user
+    else
       store_location
       flash[:notice] = "You must be logged in to access this page"
-      redirect_to new_user_session_path
+      redirect_to login_path
       return false
     end
   end
@@ -40,6 +42,10 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+  
+  def set_current_user
+    @user = current_user
   end
   
 end

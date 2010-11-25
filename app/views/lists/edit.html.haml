@@ -1,0 +1,5 @@
+%h1 Edit List
+= form_for @list do |f|
+  = render 'fields', :f => f
+  .actions
+    = f.submit "Update"
