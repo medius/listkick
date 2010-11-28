@@ -1,7 +1,6 @@
-%h1 Lists#index
-%p Here are your awesome lists
+%h4 Here are your awesome lists
 
-.item_list
+.lists
   %ul
     -@lists.each do |list|
       %li= link_to list[:name], list_path(list[:id])

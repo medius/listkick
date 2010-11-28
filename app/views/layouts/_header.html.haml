@@ -1,6 +1,6 @@
 %header
   = link_to logo, root_path
-  %nav_left.round
+  %nav.round#left
     %ul
       - if current_user
         %li= link_to "My lists", lists_path
@@ -10,9 +10,9 @@
         %li= link_to "Blog", blog_path
         %li= link_to "Plans", plans_path
         
-  %nav_right.round
+  %nav.round#right
     %ul
-      - if current_user
+      - if @user=current_user
         = @user[:email]
         %li= link_to "Settings", settings_path
         %li= link_to "Logout", logout_path

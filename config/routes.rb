@@ -4,6 +4,7 @@ Listkick::Application.routes.draw do
   resource :user_session, :only => :create
   resources :users,       :only => [:create, :update]
   resources :lists
+  resources :items,       :only => [:create, :destroy]
   
   # General pages
   match '/about',   :to => 'pages#about'

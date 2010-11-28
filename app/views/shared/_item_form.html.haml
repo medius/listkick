@@ -1,0 +1,8 @@
+- form_for @item do |f|
+  = render 'shared/error_messages', :object => f.object
+  .field
+    = f.text_field :name
+    = f.hidden_field :list_id unless @item.list.nil?
+  .actions
+    = f.submit "Add new item"
+
