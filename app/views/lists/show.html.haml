@@ -6,10 +6,25 @@
     = link_to "Delete", list_path, :method => :delete,
                                    :confirm => "Are you sure?",
                                    :title => @list[:name]
-    
-  %ul.items
-    - unless @items.empty?
-      = render @items
+
+  %h4 Active items  
+  - form_tag complete_items_path do
+    %ul.items.active
+      - unless @items.empty?
+        - @items.each do |item|
+          - if item.active
+            %li
+              = check_box_tag "item_ids[]", item.id
+              = hidden_field_tag "list_id", @list[:id]
+              = item.name
+    = submit_tag "Mark as complete"
   
+  %h4 Inactive items
+  %ul.items.inactive
+    - unless @items.empty?
+      - @items.each do |item|
+        -if !item.active
+          %li= item.name
+          
   .add_item
     = render 'shared/item_form'

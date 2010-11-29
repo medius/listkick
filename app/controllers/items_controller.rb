@@ -18,4 +18,15 @@ class ItemsController < ApplicationController
   def destroy
     
   end
+  
+  def complete
+    # TODO mark selected tasks as complete
+    @list = List.find_by_id(params[:list_id])
+    params[:item_ids].each do |item_id|
+      @item = Item.find_by_id(item_id)
+      #@item.active = false
+      @item.update_attributes(:active => false)
+    end
+    redirect_to @list
+  end
 end

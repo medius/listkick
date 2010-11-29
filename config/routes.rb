@@ -4,7 +4,14 @@ Listkick::Application.routes.draw do
   resource :user_session, :only => :create
   resources :users,       :only => [:create, :update]
   resources :lists
-  resources :items,       :only => [:create, :destroy]
+
+  resources :items, :only => [:create, :destroy, :complete] do
+    collection do
+      put 'complete'
+    end
+  end
+  
+  match '/items/complete', :to => 'items#complete'
   
   # General pages
   match '/about',   :to => 'pages#about'
