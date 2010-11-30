@@ -8,7 +8,7 @@
                                    :title => @list[:name]
 
   %h4 Active items  
-  - form_tag complete_items_path do
+  = form_tag complete_items_path do
     %ul.items.active
       - unless @items.empty?
         - @items.each do |item|
